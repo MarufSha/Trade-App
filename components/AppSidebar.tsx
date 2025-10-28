@@ -11,6 +11,7 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { cn, items } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import Link from "next/link";
 const AppSideBar = () => {
   const pathname = usePathname();
 
@@ -21,7 +22,9 @@ const AppSideBar = () => {
           <AvatarImage src="https://github.com/shadcn.png" />
           <AvatarFallback>Meta Dream User</AvatarFallback>
         </Avatar>
-        <h1 className="text-[24px] font-bold">Meta Dream</h1>
+        <h1 className="text-[24px] font-bold">
+          <Link href="/">Meta Dream</Link>
+        </h1>
       </SidebarHeader>
       <SidebarContent className="p-4 font-semibold">
         <SidebarMenu className="border-b pb-3">

@@ -7,17 +7,26 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 import { cn } from "@/lib/utils";
 import { ArrowDown, ArrowUp, BadgeCheckIcon, ChevronRight } from "lucide-react";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 const AccountTypeCard = () => {
-  const [active, setActive] = useState("1");
+  const [active, setActive] = useState(AccountTypeData[0]?.id ?? "1");
   const [expanded, setExpanded] = useState(false);
+  const router = useRouter();
+
+  const goNext = () => {
+    if (!active) return;
+    const url = `/create-new-account/create-account?id=${encodeURIComponent(
+      active
+    )}`;
+    router.push(url);
+  };
 
   return (
     <div className="w-full px-4 pb-4 mt-6 overflow-x-hidden">
@@ -146,11 +155,12 @@ const AccountTypeCard = () => {
       )}
 
       <div className="flex items-center gap-2 px-2 mt-5 min-w-0">
-        <Link href="/create-new-account/create-account-form">
-          <Button className="bg-blue-500 text-white dark:bg-blue-600">
-            Continue <ChevronRight />
-          </Button>
-        </Link>
+        <Button
+          className="bg-blue-500 text-white dark:bg-blue-600 cursor-pointer"
+          onClick={goNext}
+        >
+          Continue <ChevronRight />
+        </Button>
 
         <Button
           variant="outline"

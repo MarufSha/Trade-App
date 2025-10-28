@@ -108,3 +108,16 @@ export const AccountTypeData: AccountCard[] = [
     commission: "No commission",
   },
 ];
+
+export const MinLeverage: string[] = [
+  "1:200",
+  "1:300",
+  "1:400",
+  "1:500",
+  "1:600",
+  "1:700",
+  "1:800",
+  "1:900",
+  "1:1000",
+];
+export const Currency: string[] = ["USD", "EUR", "GBP"];

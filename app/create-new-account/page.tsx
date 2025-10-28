@@ -8,7 +8,7 @@ const CreateNewAccount = () => {
     <div className="overflow-x-hidden">
       <div className="flex items-center gap-6 border-b pb-4 ">
         <Link href={"/"}>
-          <Button variant={"outline"}>
+          <Button variant={"outline"} className="cursor-pointer">
             <ChevronLeft />
             Back
           </Button>

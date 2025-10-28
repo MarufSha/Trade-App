@@ -16,7 +16,7 @@ const AppNavbar = () => {
       <h1 className="font-semibold text-[20px]">{getTitle()}</h1>
       <div className="flex items-center gap-4 text-right">
         <div className="">
-          <p className="font-semibold">Ratul Osman</p>
+          <p className="font-semibold">Maruf Shahriar</p>
           <p className="text-xs text-right">Admin</p>
         </div>
         <Avatar>
