@@ -134,13 +134,12 @@ export type HasCreatedAt = { createdAt: string };
 
 export const TIME_ZONE = "Asia/Dhaka";
 
-
 export function normalizeRangeToUtc(range?: DateRange, tz: string = TIME_ZONE) {
   if (!range?.from || !range?.to) return undefined;
   const startLocal = startOfDay(range.from);
   const endLocal = endOfDay(range.to);
   return {
-    startUtc: fromZonedTime(startLocal, tz), 
+    startUtc: fromZonedTime(startLocal, tz),
     endUtc: fromZonedTime(endLocal, tz),
   };
 }
@@ -151,7 +150,7 @@ export function filterByDateRange<T extends HasCreatedAt>(
   tz: string = TIME_ZONE
 ): T[] {
   const norm = normalizeRangeToUtc(range, tz);
-  if (!norm) return data; 
+  if (!norm) return data;
   const { startUtc, endUtc } = norm;
 
   return data.filter((item) => {

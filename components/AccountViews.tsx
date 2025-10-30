@@ -23,7 +23,7 @@ export const AccountGridView = ({ a }: { a: Account }) => (
 );
 
 export const AccountListView = ({ a }: { a: Account }) => (
-  <div className="grid grid-cols-12 items-center py-3 border-b last:border-b-0">
+  <div className="grid grid-cols-12 items-center py-4 first:pt-0 first:-mt-2  border-b last:border-b-0">
     <div className="col-span-4">
       <div className="font-medium">{a.name}</div>
       <div className="text-xs text-muted-foreground">{a.number}</div>
@@ -41,13 +41,23 @@ export const AccountListView = ({ a }: { a: Account }) => (
 );
 
 export const AccountCompactView = ({ a }: { a: Account }) => (
-  <div className="flex items-center justify-between py-2 border-b last:border-b-0 text-sm">
-    <div className="truncate">
-      <span className="font-medium">{a.name}</span>
-      <span className="mx-2 text-muted-foreground">•</span>
-      <span className="text-muted-foreground">{a.number}</span>
+  <div className="grid grid-cols-14 items-center py-2 border-b last:border-b-0 text-sm">
+    <span className="col-span-3 font-medium ">
+      {" "}
+      Trade Type: &nbsp; {a.name}
+    </span>
+    <span className="col-span-1 text-muted-foreground">&ensp;•&ensp;</span>
+    <span className="col-span-3 text-muted-foreground">
+      Account Number: {a.number}
+    </span>
+    <span className="col-span-1 text-muted-foreground">&ensp;•&ensp;</span>
+    <span className="col-span-3 text-muted-foreground">
+      Created At: {a.number}
+    </span>
+    <span className="col-span-1 text-muted-foreground">&ensp;•&ensp;</span>
+    <div className="font-medium flex justify-end">
+      {money(a.balance, a.currency)}
     </div>
-    <div className="font-medium">{money(a.balance, a.currency)}</div>
   </div>
 );
 export const AccountSection = ({
@@ -80,12 +90,12 @@ export const AccountSection = ({
 
   if (view === "list") {
     return (
-      <Card className="rounded-2xl">
-        <div className="grid grid-cols-12 px-4 py-3 border-b bg-muted/30 rounded-t-2xl text-xs font-medium text-muted-foreground">
+      <Card className="rounded-2xl pt-2">
+        <div className="grid grid-cols-12 px-4 py-4 border-b rounded-t-2xl text-xs font-medium text-muted-foreground">
           <div className="col-span-4">Account</div>
           <div className="col-span-3">Balance</div>
           <div className="col-span-3">Created</div>
-          <div className="col-span-2 text-right">Actions</div>
+          <div className="col-span-2 flex justify-end pr-4">Actions</div>
         </div>
         <div className="px-4">
           {data.map((a) => (
@@ -96,7 +106,6 @@ export const AccountSection = ({
     );
   }
 
-  // compact
   return (
     <Card className="rounded-2xl">
       <div className="px-4">
