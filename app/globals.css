@@ -120,6 +120,43 @@
     @apply bg-background text-foreground;
   }
 }
+@layer utilities {
+  /* Custom utility for grid borders without touching default borders */
+  .grid-border-columns {
+    @apply grid items-center whitespace-nowrap overflow-x-auto;
+  }
+
+  /* Make every child capable of holding a pseudo-element */
+  .grid-border-columns > * {
+    position: relative;
+  }
+
+  /* Desktop/tablet: add right divider except on every 6th cell */
+  .grid-border-columns > *:not(:nth-child(6n))::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 1px;
+    background-color: currentColor; /* Uses element’s current text color */
+    opacity: 0.15; /* subtle so it blends with existing borders */
+  }
+
+  /* Small screens: adjust to 2 columns */
+  @media (max-width: 640px) {
+    .grid-border-columns > *:not(:nth-child(2n))::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      width: 1px;
+      background-color: currentColor;
+      opacity: 0.15;
+    }
+  }
+}
 
 html,
 body,

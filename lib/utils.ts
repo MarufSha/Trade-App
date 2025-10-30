@@ -7,6 +7,10 @@ import {
   Wallet,
 } from "lucide-react";
 import { twMerge } from "tailwind-merge";
+import { startOfDay, endOfDay, format as fmt } from "date-fns";
+import { fromZonedTime } from "date-fns-tz";
+import type { DateRange } from "react-day-picker";
+// import { format } from "date-fns";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -51,7 +55,7 @@ export type Account = {
   number: string;
   balance: number;
   currency: string;
-  createdAt: string; // ISO
+  createdAt: string;
 };
 export type AccountCard = {
   id: string;
@@ -63,6 +67,20 @@ export type AccountCard = {
   spread: number;
   commission: string;
 };
+export type TransactionHistory = {
+  id: string;
+  type: string;
+  createdAt: string;
+  take_profit: number;
+  stop_loss: number;
+  symbol: string;
+  quantity: number;
+  open_price: number;
+  current_price: number;
+  swaps: number;
+  profits: number;
+};
+
 export type ViewMode = "grid" | "list" | "compact";
 
 export const money = (v: number, c = "USD") =>
@@ -92,3 +110,69 @@ export const applyQuerySort = (
 
   return sorted;
 };
+
+export function formatDateTime(isoString: string) {
+  const date = new Date(isoString);
+  const pad = (n: number) => n.toString().padStart(2, "0");
+
+  const year = date.getFullYear();
+  const month = pad(date.getMonth() + 1);
+  const day = pad(date.getDate());
+  const hours = pad(date.getHours());
+  const minutes = pad(date.getMinutes());
+  const seconds = pad(date.getSeconds());
+
+  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+}
+
+// export function formatDateTime(isoString: string): string {
+//   const date = new Date(isoString);
+//   return format(date, "yyyy-MM-dd HH:mm:ss");
+// }
+
+export type HasCreatedAt = { createdAt: string };
+
+export const TIME_ZONE = "Asia/Dhaka";
+
+
+export function normalizeRangeToUtc(range?: DateRange, tz: string = TIME_ZONE) {
+  if (!range?.from || !range?.to) return undefined;
+  const startLocal = startOfDay(range.from);
+  const endLocal = endOfDay(range.to);
+  return {
+    startUtc: fromZonedTime(startLocal, tz), 
+    endUtc: fromZonedTime(endLocal, tz),
+  };
+}
+
+export function filterByDateRange<T extends HasCreatedAt>(
+  data: T[],
+  range?: DateRange,
+  tz: string = TIME_ZONE
+): T[] {
+  const norm = normalizeRangeToUtc(range, tz);
+  if (!norm) return data; 
+  const { startUtc, endUtc } = norm;
+
+  return data.filter((item) => {
+    const createdUtc = new Date(item.createdAt);
+    return createdUtc >= startUtc && createdUtc <= endUtc;
+  });
+}
+
+export type SortOrder = "asc" | "desc";
+export function sortByCreatedAt<T extends HasCreatedAt>(
+  data: T[],
+  order: SortOrder = "desc"
+): T[] {
+  return [...data].sort((a, b) => {
+    const ta = new Date(a.createdAt).getTime();
+    const tb = new Date(b.createdAt).getTime();
+    return order === "asc" ? ta - tb : tb - ta;
+  });
+}
+
+export function formatRangeLabel(range?: DateRange) {
+  if (!range?.from || !range?.to) return "Date";
+  return `${fmt(range.from, "yyyy-MM-dd")} — ${fmt(range.to, "yyyy-MM-dd")}`;
+}

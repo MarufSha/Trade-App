@@ -1,4 +1,4 @@
-import { Account, AccountCard } from "@/lib/utils";
+import { Account, AccountCard, TransactionHistory } from "@/lib/utils";
 
 export const REAL_DATA: Account[] = [
   {
@@ -121,3 +121,71 @@ export const MinLeverage: string[] = [
   "1:1000",
 ];
 export const Currency: string[] = ["USD", "EUR", "GBP"];
+
+export const TradingHistoryData: TransactionHistory[] = [
+  {
+    id: "12763",
+    type: "Buy",
+    createdAt: "2025-08-12T12:10:00Z",
+    take_profit: 5342,
+    stop_loss: 3267,
+    symbol: "NAS$100.R",
+    quantity: 0.5,
+    open_price: 50000,
+    current_price: 55000,
+    swaps: 0,
+    profits: 0,
+  },
+  {
+    id: "124123",
+    type: "Sell",
+    createdAt: "2025-08-12T12:10:00Z",
+    take_profit: 5342,
+    stop_loss: 3542,
+    symbol: "NAS$100.R",
+    quantity: 0.5,
+    open_price: 50000,
+    current_price: 55000,
+    swaps: 0,
+    profits: 0,
+  },
+  {
+    id: "2143242",
+    type: "Buy",
+    createdAt: "2025-08-12T12:10:00Z",
+    take_profit: 7546,
+    stop_loss: 3241,
+    symbol: "NAS$100.R",
+    quantity: 0.5,
+    open_price: 50000,
+    current_price: 55000,
+    swaps: 0,
+    profits: 0,
+  },
+  {
+    id: "12341",
+    type: "Sell",
+    createdAt: "2025-08-12T12:10:00Z",
+    take_profit: 5463,
+    stop_loss: 3441,
+    symbol: "NAS$100.R",
+    quantity: 0.5,
+    open_price: 50000,
+    current_price: 55000,
+    swaps: 0,
+    profits: 0,
+  },
+  {
+    id: "546345",
+    type: "Buy",
+    createdAt: "2025-08-12T12:10:00Z",
+    take_profit: 3251,
+    stop_loss: 5555,
+    symbol: "NAS$100.R",
+    quantity: 0.5,
+    open_price: 50000,
+    current_price: 55000,
+    swaps: 0,
+    profits: 0,
+  },
+];
