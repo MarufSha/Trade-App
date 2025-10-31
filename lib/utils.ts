@@ -175,3 +175,98 @@ export function formatRangeLabel(range?: DateRange) {
   if (!range?.from || !range?.to) return "Date";
   return `${fmt(range.from, "yyyy-MM-dd")} — ${fmt(range.to, "yyyy-MM-dd")}`;
 }
+
+
+
+export type SortKey =
+  | "date"
+  | "profits"
+  | "swaps"
+  | "id"
+  | "quantity"
+  | "open_price"
+  | "current_price";
+
+
+function getValue(obj: unknown, key: string): unknown {
+  if (obj && typeof obj === "object" && key in obj) {
+
+    return (obj as Record<string, unknown>)[key]; 
+  }
+  return undefined;
+}
+
+function toNumberSafe(v: unknown): number {
+  if (typeof v === "number" && Number.isFinite(v)) return v;
+  if (typeof v === "string") {
+    const n = Number(v.replace?.(/[, ]/g, "") ?? v);
+    return Number.isFinite(n) ? n : 0;
+  }
+  return 0;
+}
+
+function compareNumbers(a: number, b: number, order: SortOrder) {
+  return order === "asc" ? a - b : b - a;
+}
+
+function compareStrings(a: string, b: string, order: SortOrder) {
+  const cmp = a.localeCompare(b, undefined, {
+    numeric: true,
+    sensitivity: "base",
+  });
+  return order === "asc" ? cmp : -cmp;
+}
+
+export function sortTradingData<T extends HasCreatedAt>(
+  data: T[],
+  key: SortKey,
+  order: SortOrder
+): T[] {
+  const arr = [...data];
+
+  switch (key) {
+    case "date": {
+      return arr.sort((a, b) => {
+        const ta = new Date(a.createdAt).getTime();
+        const tb = new Date(b.createdAt).getTime();
+        return compareNumbers(ta, tb, order);
+      });
+    }
+
+    case "profits":
+    case "swaps":
+    case "quantity":
+    case "open_price":
+    case "current_price": {
+      return arr.sort((a, b) => {
+        const va = toNumberSafe(getValue(a, key));
+        const vb = toNumberSafe(getValue(b, key));
+        return compareNumbers(va, vb, order);
+      });
+    }
+
+    case "id": {
+      return arr.sort((a, b) => {
+        const aId = getValue(a, "id");
+        const bId = getValue(b, "id");
+
+
+        const na = toNumberSafe(aId);
+        const nb = toNumberSafe(bId);
+        if (
+          Number.isFinite(na) &&
+          Number.isFinite(nb) &&
+          (typeof aId === "number" || typeof aId === "string") &&
+          (typeof bId === "number" || typeof bId === "string")
+        ) {
+          return compareNumbers(na, nb, order);
+        }
+
+        return compareStrings(String(aId ?? ""), String(bId ?? ""), order);
+      });
+    }
+
+    default:
+      return arr;
+  }
+}
