@@ -176,8 +176,6 @@ export function formatRangeLabel(range?: DateRange) {
   return `${fmt(range.from, "yyyy-MM-dd")} — ${fmt(range.to, "yyyy-MM-dd")}`;
 }
 
-
-
 export type SortKey =
   | "date"
   | "profits"
@@ -187,11 +185,9 @@ export type SortKey =
   | "open_price"
   | "current_price";
 
-
 function getValue(obj: unknown, key: string): unknown {
   if (obj && typeof obj === "object" && key in obj) {
-
-    return (obj as Record<string, unknown>)[key]; 
+    return (obj as Record<string, unknown>)[key];
   }
   return undefined;
 }
@@ -249,7 +245,6 @@ export function sortTradingData<T extends HasCreatedAt>(
       return arr.sort((a, b) => {
         const aId = getValue(a, "id");
         const bId = getValue(b, "id");
-
 
         const na = toNumberSafe(aId);
         const nb = toNumberSafe(bId);

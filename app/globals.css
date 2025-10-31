@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
+@import "react-international-phone/style.css";
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -180,4 +180,7 @@ svg {
 
 .card-row-scroll [data-radix-scroll-area-viewport] {
   overscroll-behavior-x: contain;
+}
+.react-international-phone-country-selector .dropdown {
+  font-size: 0.875rem; /* text-sm */
 }

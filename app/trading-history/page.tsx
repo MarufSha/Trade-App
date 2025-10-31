@@ -205,7 +205,6 @@ const TradingHistory = () => {
       </div>
 
       {pageRows.map((tx) => {
-        console.log("🚀 ~ TradingHistory ~ tx:", tx);
         return <TradingHistoryCard key={tx.id} item={tx} />;
       })}
       <div className="flex items-center justify-between py-2">
