@@ -54,7 +54,7 @@ const TradingHistory = () => {
   const [order, setOrder] = useState<"asc" | "desc">("desc");
   const [sortKey, setSortKey] = useState<SortKey>("date");
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState<number>(10);
+  const [pageSize, setPageSize] = useState<number>(4);
   const dataView = useMemo(() => {
     const filtered = filterByDateRange(TradingHistoryData, dateRange);
     return sortTradingData(filtered, sortKey, order);
@@ -301,10 +301,10 @@ const TradingHistory = () => {
               <SelectValue placeholder={pageSize} />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="5">5</SelectItem>
-              <SelectItem value="10">10</SelectItem>
-              <SelectItem value="20">20</SelectItem>
-              <SelectItem value="50">50</SelectItem>
+              <SelectItem value="4">4</SelectItem>
+              <SelectItem value="8">8</SelectItem>
+              <SelectItem value="12">12</SelectItem>
+              <SelectItem value="16">16</SelectItem>
             </SelectContent>
           </Select>
         </div>
