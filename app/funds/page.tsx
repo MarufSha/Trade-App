@@ -1,13 +1,14 @@
 "use client";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsContent } from "@/components/ui/tabs";
 import Deposit from "./Deposit/page";
-import Withdraw from "./Withdraw/page";
 import Transfer from "./Transfer/page";
+import Withdraw from "./Withdraw/page";
+import FundTabHeader from "@/components/FundTabHeader";
 
 const Funds = () => {
   return (
     <Tabs defaultValue="Deposit">
-      <div className="flex items-center justify-center border-b pb-4">
+      {/* <div className="flex items-center justify-center border-b pb-4">
         <TabsList className="gap-4 w-120 h-12 bg-gray-200 rounded-2xl">
           <TabsTrigger value="Deposit" className="rounded-xl cursor-pointer">
             Deposit
@@ -19,8 +20,8 @@ const Funds = () => {
             Transfer
           </TabsTrigger>
         </TabsList>
-      </div>
-
+      </div> */}
+      <FundTabHeader />
       <TabsContent value="Deposit">
         <Deposit type="Deposit" />
       </TabsContent>

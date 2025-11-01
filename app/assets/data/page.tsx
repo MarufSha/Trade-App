@@ -1,4 +1,10 @@
-import { Account, AccountCard, TransactionHistory } from "@/lib/utils";
+import {
+  Account,
+  AccountCard,
+  CardItem,
+  TransactionHistory,
+} from "@/lib/utils";
+import Image from "next/image";
 
 export const REAL_DATA: Account[] = [
   {
@@ -252,5 +258,52 @@ export const TradingHistoryData: TransactionHistory[] = [
     current_price: 4185,
     swaps: 9,
     profits: 125,
+  },
+];
+
+export const FundsCard: CardItem[] = [
+  {
+    icon: (
+      <Image
+        src="/icons/binance.png"
+        alt="Binance Pay"
+        width={40}
+        height={40}
+      />
+    ),
+    title: "BinancePay",
+    fee: 0,
+    limit: "Unlimited",
+    currency: "USDT",
+  },
+  {
+    icon: (
+      <Image src="/icons/bkash.png" alt="Bkash Pay" width={40} height={40} />
+    ),
+    title: "Bkash",
+    fee: 0,
+    limit: "Unlimited",
+    currency: "USDT",
+  },
+  {
+    icon: (
+      <Image
+        src="/icons/neteller.png"
+        alt="Neteller Pay"
+        width={40}
+        height={40}
+      />
+    ),
+    title: "Neteller",
+    fee: 0,
+    limit: "Unlimited",
+    currency: "USDT",
+  },
+  {
+    icon: <Image src="/icons/skrill.png" alt="Skrill" width={40} height={40} />,
+    title: "Skrill Pay",
+    fee: 0,
+    limit: "Unlimited",
+    currency: "USDT",
   },
 ];
