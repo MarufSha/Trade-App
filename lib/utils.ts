@@ -265,7 +265,7 @@ export function sortTradingData<T extends HasCreatedAt>(
       return arr;
   }
 }
-export type FundsTab = "Deposit" | "Withdraw" | "Transfer";
+export type FundTab = "Deposit" | "Withdraw" | "Transfer";
 export type CardItem = {
   icon: React.ReactNode;
   title: string;

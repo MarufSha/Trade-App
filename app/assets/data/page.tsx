@@ -261,7 +261,7 @@ export const TradingHistoryData: TransactionHistory[] = [
   },
 ];
 
-export const FundsCard: CardItem[] = [
+export const FundCard: CardItem[] = [
   {
     icon: (
       <Image

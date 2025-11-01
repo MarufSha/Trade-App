@@ -5,22 +5,9 @@ import Transfer from "./Transfer/page";
 import Withdraw from "./Withdraw/page";
 import FundTabHeader from "@/components/FundTabHeader";
 
-const Funds = () => {
+const Fund = () => {
   return (
     <Tabs defaultValue="Deposit">
-      {/* <div className="flex items-center justify-center border-b pb-4">
-        <TabsList className="gap-4 w-120 h-12 bg-gray-200 rounded-2xl">
-          <TabsTrigger value="Deposit" className="rounded-xl cursor-pointer">
-            Deposit
-          </TabsTrigger>
-          <TabsTrigger value="Withdraw" className="rounded-xl cursor-pointer">
-            Withdraw
-          </TabsTrigger>
-          <TabsTrigger value="Transfer" className="rounded-xl cursor-pointer">
-            Transfer
-          </TabsTrigger>
-        </TabsList>
-      </div> */}
       <FundTabHeader />
       <TabsContent value="Deposit">
         <Deposit type="Deposit" />
@@ -36,4 +23,4 @@ const Funds = () => {
     </Tabs>
   );
 };
-export default Funds;
+export default Fund;

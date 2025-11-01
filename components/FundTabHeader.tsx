@@ -1,6 +1,7 @@
 import { TabsList, TabsTrigger } from "./ui/tabs";
 
 const FundTabHeader = () => {
+  
   return (
     <div className="flex items-center justify-center border-b pb-4">
       <TabsList className="gap-4 w-120 h-12 bg-gray-200 rounded-2xl">
