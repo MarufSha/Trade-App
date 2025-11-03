@@ -67,8 +67,7 @@ const FundCards = () => {
 
       <div className="flex items-center justify-center p-4 gap-8">
         <Button variant={"outline"} asChild>
-          {/* <Link href={{ pathname: "/funds", query: { type: typeParam } }}> */}
-          <Link href={"/funds"}>
+          <Link href={{ pathname: "/funds", query: { type: typeParam } }}>
             <ChevronLeft /> Back
           </Link>
         </Button>

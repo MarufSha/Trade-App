@@ -32,7 +32,9 @@ export default function RootLayout({
           <AppSideBar />
           <SidebarInset>
             <AppNavbar />
-            <main className="p-4 overflow-x-hidden">{children}</main>
+            <main className="p-4 overflow-x-hidden h-full">
+              {children}
+            </main>
           </SidebarInset>
         </SidebarProvider>
       </body>
