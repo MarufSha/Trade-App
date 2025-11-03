@@ -56,11 +56,16 @@ const Deposit = ({ type }: { type: string }) => {
         </CardContent>
       </Card>
       <div className="flex items-center justify-center p-4 gap-8">
-        <Button variant={"outline"}>
-          <ChevronLeft /> Back
+        <Button variant={"outline"} asChild>
+          <Link href="/">
+            <ChevronLeft /> Back
+          </Link>
         </Button>
-        <Button className="bg-blue-500 text-white dark:bg-blue-600 cursor-pointer">
-          <Link href={{ pathname: "/funds/Payment-Process", query: { type } }} className="flex">
+        <Button
+          className="bg-blue-500 text-white dark:bg-blue-600 cursor-pointer"
+          asChild
+        >
+          <Link href={{ pathname: "/funds/Payment-Process", query: { type } }}>
             Next <ChevronRight />
           </Link>
         </Button>

@@ -14,11 +14,12 @@ const Fund = () => {
       </TabsContent>
 
       <TabsContent value="Withdraw">
-        <Withdraw />
+        <Withdraw type="Withdraw" />
       </TabsContent>
 
       <TabsContent value="Transfer">
         <Transfer />
+        {/* <Transfer type = "Transfer"/> */}
       </TabsContent>
     </Tabs>
   );

@@ -267,13 +267,17 @@ export function sortTradingData<T extends HasCreatedAt>(
 }
 export type FundTab = "Deposit" | "Withdraw" | "Transfer";
 export type CardItem = {
+  id: number;
   icon: React.ReactNode;
   title: string;
   fee: string | number;
   limit: string | number;
   currency: string;
+  time: string;
 };
 export type FundTabHeaderProps = {
-  value: "Deposit" | "Withdraw" | "Transfer";
-  readOnly?: boolean;
+  readonly?: boolean;
 };
+export function isFundTab(value: string): value is FundTab {
+  return ["Deposit", "Withdraw", "Transfer"].includes(value);
+}

@@ -263,47 +263,71 @@ export const TradingHistoryData: TransactionHistory[] = [
 
 export const FundCard: CardItem[] = [
   {
+    id: 1,
     icon: (
       <Image
-        src="/icons/binance.png"
+        src="/images/binance.png"
         alt="Binance Pay"
-        width={40}
+        width={80}
         height={40}
+        className="h-auto w-auto"
       />
     ),
     title: "BinancePay",
     fee: 0,
     limit: "Unlimited",
     currency: "USDT",
+    time: "Instant",
   },
   {
+    id: 2,
     icon: (
-      <Image src="/icons/bkash.png" alt="Bkash Pay" width={40} height={40} />
+      <Image
+        src="/images/bkash.png"
+        alt="Bkash Pay"
+        width={80}
+        height={40}
+        className="h-auto w-auto"
+      />
     ),
     title: "Bkash",
     fee: 0,
     limit: "Unlimited",
     currency: "USDT",
+    time: "Instant",
   },
   {
+    id: 3,
     icon: (
       <Image
-        src="/icons/neteller.png"
+        src="/images/neteller.png"
         alt="Neteller Pay"
-        width={40}
+        width={80}
         height={40}
+        className="h-auto w-auto"
       />
     ),
     title: "Neteller",
     fee: 0,
     limit: "Unlimited",
     currency: "USDT",
+    time: "Instant-30 minutes",
   },
   {
-    icon: <Image src="/icons/skrill.png" alt="Skrill" width={40} height={40} />,
-    title: "Skrill Pay",
+    id: 4,
+    icon: (
+      <Image
+        src="/images/skrill.png"
+        alt="Skrill Pay"
+        width={80}
+        height={40}
+        className="h-auto w-auto"
+      />
+    ),
+    title: "Skrill",
     fee: 0,
     limit: "Unlimited",
     currency: "USDT",
+    time: "Instant",
   },
 ];

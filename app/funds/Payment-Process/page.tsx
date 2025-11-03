@@ -1,23 +1,37 @@
+// app/funds/Payment-Process/page.tsx
 "use client";
 import FundCards from "@/components/FundCards";
+import FundTabHeader from "@/components/FundTabHeader";
+import { Tabs } from "@/components/ui/tabs";
 import { useSearchParams } from "next/navigation";
+import { isFundTab, type FundTab } from "@/lib/utils";
+
 const PaymentProcess = () => {
   const searchParams = useSearchParams();
-  const typeParam = searchParams.get("type") ?? "Payment";
+  const valueFromURL = searchParams.get("type") ?? "Deposit";
+  const typeParam: FundTab = isFundTab(valueFromURL ?? "")
+    ? (valueFromURL as FundTab)
+    : "Deposit";
 
   return (
     <div>
-      <div className="flex flex-col justify-center items-center space-y-1 pb-4">
-        <h1 className="text-xl font-semibold font-sans">
+      <Tabs value={typeParam} onValueChange={() => {}}>
+        <FundTabHeader readonly />
+      </Tabs>
+
+      <div className="flex flex-col justify-center items-center space-y-1 pb-10">
+        <h1 className="text-xl font-semibold font-sans mt-4">
           Select {typeParam} Method
         </h1>
         <p className="text-muted-foreground font-semibold">
           Choose the most convenient payment method from the available options
-          for your deposit
+          for your {typeParam.toLowerCase()}.
         </p>
       </div>
+
       <FundCards />
     </div>
   );
 };
+
 export default PaymentProcess;
