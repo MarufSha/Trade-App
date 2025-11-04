@@ -9,6 +9,7 @@ import {
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
 import { EllipsisVertical } from "lucide-react";
+import { Badge } from "./ui/badge";
 
 export const columns: ColumnDef<TransactionTable>[] = [
   {
@@ -36,6 +37,9 @@ export const columns: ColumnDef<TransactionTable>[] = [
   {
     accessorKey: "trx_date",
     header: "TRX DATE",
+    cell: ({ row }) => (
+      <div className="text-muted-foreground">{row.original.trx_date}</div>
+    ),
   },
   {
     accessorKey: "trx_type",
@@ -44,6 +48,19 @@ export const columns: ColumnDef<TransactionTable>[] = [
   {
     accessorKey: "status",
     header: "STATUS",
+    cell: ({ row }) => (
+      <div>
+        {row.original.status === "Failed" ? (
+          <Badge className="bg-red-100 text-red-800 rounded-sm">
+            {row.original.status}
+          </Badge>
+        ) : (
+          <Badge className="bg-green-100 text-green-900 rounded-sm">
+            {row.original.status}
+          </Badge>
+        )}
+      </div>
+    ),
   },
   {
     accessorKey: "referral_code",

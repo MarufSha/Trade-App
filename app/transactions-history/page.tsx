@@ -32,13 +32,13 @@ const TransactionHistory = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="">
-      <div className="flex justify-between pb-10 ">
+    <div className="px-4">
+      <div className="flex justify-between pb-6 ">
         <div className="relative w-[200px]">
           <Input
             type="text"
             placeholder="Search"
-            className="pl-4 pr-3 py-2 text-sm rounded-md border border-gray-300 focus-visible:ring-0 focus-visible:ring-offset-0"
+            className="pl-4 pr-3 py-2 text-sm rounded-xl border border-gray-300 focus-visible:ring-0 focus-visible:ring-offset-0"
           />
           <Search className="absolute right-3 top-1/2 h-4 w-4 text-gray-400 -translate-y-1/2 cursor-pointer z-10" />
         </div>
