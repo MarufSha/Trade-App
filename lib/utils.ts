@@ -18,7 +18,7 @@ export function cn(...inputs: ClassValue[]) {
 export const items = [
   {
     id: 1,
-    title: "Trading Accounts",
+    title: "Trading accounts",
     url: "/",
     icon: SquareUserRound,
     pageHeader: "Trading Accounts",
@@ -281,3 +281,18 @@ export type FundTabHeaderProps = {
 export function isFundTab(value: string): value is FundTab {
   return ["Deposit", "Withdraw", "Transfer"].includes(value);
 }
+
+export type TransactionTable = {
+  sl: number;
+  trx_id: string;
+  currency: string;
+  amount: number;
+  account: string;
+  trx_date: string;
+  trx_type: string;
+  status: string;
+  referral_code: string;
+  icon: React.ReactNode;
+  payment_method: string;
+};
+

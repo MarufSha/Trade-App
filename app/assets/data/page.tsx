@@ -3,6 +3,7 @@ import {
   AccountCard,
   CardItem,
   TransactionHistory,
+  TransactionTable,
 } from "@/lib/utils";
 import Image from "next/image";
 
@@ -329,5 +330,101 @@ export const FundCard: CardItem[] = [
     limit: "Unlimited",
     currency: "USDT",
     time: "Instant",
+  },
+];
+export const TransactionType: string[] = [
+  "Deposit",
+  "Withdraw",
+  "Transfer",
+  "Refund",
+];
+export const Status: string[] = ["Failed", "Completed"];
+
+export const TransactionAccount: string[] = ["Account 1", "Account 2"];
+
+export const TradingHistoryDataTable: TransactionTable[] = [
+  {
+    sl: 1,
+    trx_id: "#2872089AGT",
+    amount: 56200,
+    currency: "$",
+    account: "Account 1",
+    trx_date: "2021-04-23",
+    trx_type: "Deposit",
+    status: "Failed",
+    referral_code: "A493GA",
+    icon: (
+      <Image
+        src="/images/binance.png"
+        alt="Binance Pay"
+        width={30}
+        height={30}
+        className="h-auto w-auto rounded-full"
+      />
+    ),
+    payment_method: "BinancePay",
+  },
+  {
+    sl: 2,
+    trx_id: "#2872089AGT",
+    amount: 56200,
+    currency: "$",
+    account: "Account 2",
+    trx_date: "2021-04-23",
+    trx_type: "Withdraw",
+    status: "Completed",
+    referral_code: "A493GA",
+    icon: (
+      <Image
+        src="/images/bkash.png"
+        alt="Bkash Pay"
+        width={30}
+        height={30}
+        className="h-auto w-auto rounded-full"
+      />
+    ),
+    payment_method: "bKash",
+  },
+  {
+    sl: 3,
+    trx_id: "#2872089AGT",
+    amount: 56200,
+    currency: "$",
+    account: "Account 1",
+    trx_date: "2021-04-18",
+    trx_type: "Transfer",
+    status: "Completed",
+    referral_code: "A493GA",
+    icon: (
+      <Image
+        src="/images/binance.png"
+        alt="Binance Pay"
+        width={30}
+        height={30}
+        className="h-auto w-auto rounded-full"
+      />
+    ),
+    payment_method: "BinancePay",
+  },
+  {
+    sl: 4,
+    trx_id: "#2872089AGT",
+    amount: 56200,
+    currency: "$",
+    account: "Account 1",
+    trx_date: "2021-04-15",
+    trx_type: "Refund",
+    status: "Completed",
+    referral_code: "A493GA",
+    icon: (
+      <Image
+        src="/images/binance.png"
+        alt="Binance Pay"
+        width={30}
+        height={30}
+        className="h-auto w-auto rounded-full"
+      />
+    ),
+    payment_method: "BinancePay",
   },
 ];

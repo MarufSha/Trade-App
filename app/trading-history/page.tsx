@@ -55,6 +55,7 @@ const TradingHistory = () => {
   const [sortKey, setSortKey] = useState<SortKey>("date");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState<number>(4);
+  
   const dataView = useMemo(() => {
     const filtered = filterByDateRange(TradingHistoryData, dateRange);
     return sortTradingData(filtered, sortKey, order);
