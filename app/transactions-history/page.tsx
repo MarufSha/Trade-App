@@ -26,12 +26,21 @@ import { filterAndSortTransactions } from "@/lib/utils";
 
 const TransactionHistory = () => {
   const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
-  const filteredAndSorted = useMemo(
-    () => filterAndSortTransactions(TradingHistoryDataTable, dateRange),
-    [dateRange]
-  );
   const [open, setOpen] = useState(false);
-
+  const [txType, setTxType] = useState<string | undefined>(undefined);
+  const [status, setStatus] = useState<string | undefined>(undefined);
+  const [account, setAccount] = useState<string | undefined>(undefined);
+  const filteredAndSorted = useMemo(
+    () =>
+      filterAndSortTransactions(
+        TradingHistoryDataTable,
+        dateRange,
+        txType,
+        status,
+        account
+      ),
+    [dateRange, txType, status, account]
+  );
   return (
     <div className="px-4">
       <div className="flex justify-between pb-6 ">
@@ -85,39 +94,42 @@ const TransactionHistory = () => {
             </PopoverContent>
           </Popover>
           <div>
-            <Select>
+            <Select onValueChange={(val) => setTxType(val)}>
               <SelectTrigger>
                 <SelectValue placeholder="Transaction Type" />
               </SelectTrigger>
               <SelectContent>
-                {TransactionType.map((txType) => (
-                  <SelectItem key={txType} value={txType}>
-                    {txType}
+                <SelectItem value="All">All Transaction</SelectItem>
+                {TransactionType.map((type) => (
+                  <SelectItem key={type} value={type}>
+                    {type}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
           <div>
-            <Select>
+            <Select onValueChange={(val) => setStatus(val)}>
               <SelectTrigger>
-                <SelectValue placeholder="Status" />
+                <SelectValue placeholder="Status Type" />
               </SelectTrigger>
               <SelectContent>
-                {Status.map((status) => (
-                  <SelectItem key={status} value={status}>
-                    {status}
+                <SelectItem value="All">All Status</SelectItem>
+                {Status.map((type) => (
+                  <SelectItem key={type} value={type}>
+                    {type}
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
           <div>
-            <Select>
+            <Select onValueChange={(val) => setAccount(val)}>
               <SelectTrigger>
                 <SelectValue placeholder="Account" />
               </SelectTrigger>
               <SelectContent>
+                <SelectItem value="All">All Accounts</SelectItem>
                 {TransactionAccount.map((account) => (
                   <SelectItem key={account} value={account}>
                     {account}

@@ -15,6 +15,12 @@ export const columns: ColumnDef<TransactionTable>[] = [
   {
     accessorKey: "sl",
     header: "SL",
+    enableSorting: true,
+    sortingFn: (a, b) => {
+      const x = Number(a.getValue<number>("sl"));
+      const y = Number(b.getValue<number>("sl"));
+      return x === y ? 0 : x < y ? -1 : 1;
+    },
   },
   {
     accessorKey: "trx_id",

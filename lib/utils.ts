@@ -296,12 +296,33 @@ export type TransactionTable = {
   payment_method: string;
 };
 
-export function filterAndSortTransactions<T extends { trx_date: string }>(
+export function filterAndSortTransactions<
+  T extends {
+    trx_date: string;
+    trx_type?: string;
+    status?: string;
+    account?: string;
+  }
+>(
   data: T[],
   dateRange?: DateRange,
-  order: SortOrder = "desc"
+  txType?: string,
+  status?: string,
+  account?: string,
+  order: "asc" | "desc" = "desc"
 ): T[] {
   let rows = [...data];
+
+  if (txType && txType !== "All") {
+    rows = rows.filter((r) => r.trx_type === txType);
+  }
+
+  if (status && status !== "All") {
+    rows = rows.filter((r) => r.status === status);
+  }
+  if (account && account !== "All") {
+    rows = rows.filter((r) => r.account === account);
+  }
 
   if (dateRange?.from && dateRange?.to) {
     const start = new Date(dateRange.from);
