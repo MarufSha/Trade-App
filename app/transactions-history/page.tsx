@@ -10,10 +10,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+import { useMemo, useState } from "react";
 import { PopoverContent } from "@/components/ui/popover";
 import { CalendarIcon, ChevronDownIcon, FolderUp, Search } from "lucide-react";
-import { useState } from "react";
 import { type DateRange } from "react-day-picker";
 import {
   Status,
@@ -23,12 +22,14 @@ import {
 } from "../assets/data/page";
 import { DataTable } from "@/components/DataTable";
 import { columns } from "../../components/Columns";
+import { filterAndSortTransactions } from "@/lib/utils";
 
 const TransactionHistory = () => {
-  const [dateRange, setDateRange] = useState<DateRange | undefined>({
-    from: new Date(),
-    to: new Date(),
-  });
+  const [dateRange, setDateRange] = useState<DateRange | undefined>(undefined);
+  const filteredAndSorted = useMemo(
+    () => filterAndSortTransactions(TradingHistoryDataTable, dateRange),
+    [dateRange]
+  );
   const [open, setOpen] = useState(false);
 
   return (
@@ -131,7 +132,7 @@ const TransactionHistory = () => {
         </div>
       </div>
       <div className="container mx-auto py-2">
-        <DataTable columns={columns} data={TradingHistoryDataTable} />
+        <DataTable columns={columns} data={filteredAndSorted} />
       </div>
     </div>
   );

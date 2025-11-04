@@ -296,3 +296,28 @@ export type TransactionTable = {
   payment_method: string;
 };
 
+export function filterAndSortTransactions<T extends { trx_date: string }>(
+  data: T[],
+  dateRange?: DateRange,
+  order: SortOrder = "desc"
+): T[] {
+  let rows = [...data];
+
+  if (dateRange?.from && dateRange?.to) {
+    const start = new Date(dateRange.from);
+    start.setHours(0, 0, 0, 0);
+    const end = new Date(dateRange.to);
+    end.setHours(23, 59, 59, 999);
+
+    rows = rows.filter((r) => {
+      const t = new Date(r.trx_date).getTime();
+      return t >= start.getTime() && t <= end.getTime();
+    });
+  }
+
+  return rows.sort((a, b) => {
+    const ta = new Date(a.trx_date).getTime();
+    const tb = new Date(b.trx_date).getTime();
+    return order === "asc" ? ta - tb : tb - ta;
+  });
+}

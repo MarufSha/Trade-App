@@ -8,7 +8,7 @@ import {
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Button } from "./ui/button";
-import { EllipsisVertical } from "lucide-react";
+import { ArrowUpDown, EllipsisVertical } from "lucide-react";
 import { Badge } from "./ui/badge";
 
 export const columns: ColumnDef<TransactionTable>[] = [
@@ -36,7 +36,20 @@ export const columns: ColumnDef<TransactionTable>[] = [
   },
   {
     accessorKey: "trx_date",
-    header: "TRX DATE",
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        className="flex items-center gap-2"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        DATE <ArrowUpDown className="w-4 h-4" />
+      </Button>
+    ),
+    sortingFn: (rowA, rowB, id) => {
+      const ta = new Date(rowA.getValue<string>(id)).getTime();
+      const tb = new Date(rowB.getValue<string>(id)).getTime();
+      return ta === tb ? 0 : ta < tb ? -1 : 1;
+    },
     cell: ({ row }) => (
       <div className="text-muted-foreground">{row.original.trx_date}</div>
     ),
