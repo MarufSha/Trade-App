@@ -1,3 +1,4 @@
+'use client';
 import { AccountTypeData } from "@/app/assets/data/data";
 import { useSearchParams } from "next/navigation";
 import {
