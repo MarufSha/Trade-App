@@ -1,22 +1,26 @@
 "use client";
+
+import { Suspense, useEffect, useState } from "react";
 import { Tabs, TabsContent } from "@/components/ui/tabs";
 import Deposit from "./Deposit/page";
 import Transfer from "./Transfer/page";
 import Withdraw from "./Withdraw/page";
 import FundTabHeader from "@/components/FundTabHeader";
-import { useState, useEffect } from "react";
 import { FundTab, isFundTab } from "@/lib/utils";
 import { useSearchParams, useRouter } from "next/navigation";
 
-const Fund = () => {
+const DEFAULT_TAB: FundTab = "Deposit";
+
+const FundInner = () => {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  const valueFromURL = searchParams.get("type") ?? "Deposit";
-  const typeParam: FundTab = isFundTab(valueFromURL ?? "")
+  const valueFromURL = searchParams.get("type") ?? DEFAULT_TAB;
+  const typeParam: FundTab = isFundTab(valueFromURL)
     ? (valueFromURL as FundTab)
-    : "Deposit";
-  const [selectTab, setSelectTab] = useState<FundTab>("Deposit");
+    : DEFAULT_TAB;
+
+  const [selectTab, setSelectTab] = useState<FundTab>(typeParam);
 
   useEffect(() => {
     setSelectTab(typeParam);
@@ -35,6 +39,7 @@ const Fund = () => {
       className="flex flex-col h-full min-h-0"
     >
       <FundTabHeader />
+
       <TabsContent value="Deposit">
         <Deposit type="Deposit" />
       </TabsContent>
@@ -45,9 +50,24 @@ const Fund = () => {
 
       <TabsContent value="Transfer">
         <Transfer />
-        {/* <Transfer type = "Transfer"/> */}
+        {/* <Transfer type="Transfer" /> */}
       </TabsContent>
     </Tabs>
   );
 };
+
+const Fund = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex h-full w-full items-center justify-center">
+          Loading...
+        </div>
+      }
+    >
+      <FundInner />
+    </Suspense>
+  );
+};
+
 export default Fund;
