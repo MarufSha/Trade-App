@@ -31,7 +31,7 @@ import {
 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { type DateRange } from "react-day-picker";
-import { TradingHistoryData } from "../assets/data/page";
+import { TradingHistoryData } from "../assets/data/data";
 import {
   Pagination,
   PaginationContent,
@@ -56,7 +56,7 @@ const TradingHistory = () => {
   const [sortKey, setSortKey] = useState<SortKey>("date");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState<number>(4);
-  
+
   const dataView = useMemo(() => {
     const filtered = filterByDateRange(TradingHistoryData, dateRange);
     return sortTradingData(filtered, sortKey, order);

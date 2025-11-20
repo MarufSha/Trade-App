@@ -1,10 +1,15 @@
-import { AccountTypeData } from "@/app/assets/data/page";
+import { AccountTypeData } from "@/app/assets/data/data";
 import { useSearchParams } from "next/navigation";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 import { Badge } from "./ui/badge";
 import { cn } from "@/lib/utils";
 import { BadgeCheck } from "lucide-react";
-
 
 const AccountPreviewCard = () => {
   const params = useSearchParams();

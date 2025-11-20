@@ -21,7 +21,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Currency, MinLeverage } from "@/app/assets/data/page";
+import { Currency, MinLeverage } from "@/app/assets/data/data";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import AccountPreviewCard from "@/components/AccountPreviewCard";

@@ -19,7 +19,7 @@ import {
   TradingHistoryDataTable,
   TransactionAccount,
   TransactionType,
-} from "../assets/data/page";
+} from "../assets/data/data";
 import { DataTable } from "@/components/DataTable";
 import { columns } from "../../components/Columns";
 import { filterAndSortTransactions } from "@/lib/utils";

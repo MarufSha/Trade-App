@@ -2,7 +2,7 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight, Clock } from "lucide-react";
 import { Badge } from "./ui/badge";
 import { Card, CardContent } from "./ui/card";
-import { FundCard } from "@/app/assets/data/page";
+import { FundCard } from "@/app/assets/data/data";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";

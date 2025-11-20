@@ -1,5 +1,5 @@
 "use client";
-import { AccountTypeData } from "@/app/assets/data/page";
+import { AccountTypeData } from "@/app/assets/data/data";
 import {
   Card,
   CardContent,

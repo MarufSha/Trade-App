@@ -13,7 +13,7 @@ import {
   List,
 } from "lucide-react";
 import { useState } from "react";
-import { DEMO_DATA, REAL_DATA } from "./assets/data/page";
+import { DEMO_DATA, REAL_DATA } from "./assets/data/data";
 import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
 
 import { AccountSection } from "@/components/AccountViews";
