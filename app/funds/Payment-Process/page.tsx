@@ -1,17 +1,21 @@
-// app/funds/Payment-Process/page.tsx
 "use client";
+
+import { Suspense } from "react";
 import FundCards from "@/components/FundCards";
 import FundTabHeader from "@/components/FundTabHeader";
 import { Tabs } from "@/components/ui/tabs";
 import { useSearchParams } from "next/navigation";
 import { isFundTab, type FundTab } from "@/lib/utils";
 
-const PaymentProcess = () => {
+const DEFAULT_TAB: FundTab = "Deposit";
+
+const PaymentProcessInner = () => {
   const searchParams = useSearchParams();
-  const valueFromURL = searchParams.get("type") ?? "Deposit";
-  const typeParam: FundTab = isFundTab(valueFromURL ?? "")
+  const valueFromURL = searchParams.get("type") ?? DEFAULT_TAB;
+
+  const typeParam: FundTab = isFundTab(valueFromURL)
     ? (valueFromURL as FundTab)
-    : "Deposit";
+    : DEFAULT_TAB;
 
   return (
     <div>
@@ -31,6 +35,20 @@ const PaymentProcess = () => {
 
       <FundCards />
     </div>
+  );
+};
+
+const PaymentProcess = () => {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex h-full w-full items-center justify-center">
+          Loading...
+        </div>
+      }
+    >
+      <PaymentProcessInner />
+    </Suspense>
   );
 };
 
